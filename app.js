@@ -3,12 +3,12 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
+const Campground = require("./models/campground");
 
 //Connecting to MongoDB
 mongoose
-    .connect("mongodb://localhost:27017/yelp-camp", {
+    .connect("mongodb://127.0.0.1:27017/yelp-camp", {
         useNewUrlParser: true,
-        useCreateIndex: true,
         useUnifiedTopology: true,
     })
     .then(() => {
@@ -23,6 +23,15 @@ app.set("views", path.join(__dirname, "views"));
 
 app.get("/", (req, res) => {
     res.send("Cool");
+});
+
+app.get("/makecampground", async (req, res) => {
+    const camp = new Campground({
+        title: "My Backyard",
+        price: "$100",
+    });
+    await camp.save();
+    res.send(camp);
 });
 
 app.listen(3000, () => {
