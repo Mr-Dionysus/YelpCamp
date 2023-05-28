@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const Campground = require("./models/campground");
+const methodOverride = require("method-override");
 
 //Connecting to MongoDB
 mongoose
@@ -21,17 +22,23 @@ mongoose
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+app.use(methodOverride("_method"));
+
 app.get("/", (req, res) => {
     res.send("Cool");
 });
 
-app.get("/makecampground", async (req, res) => {
-    const camp = new Campground({
-        title: "My Backyard",
-        price: "$100",
-    });
-    await camp.save();
-    res.send(camp);
+app.get("/campgrounds", async (req, res) => {
+    const campgrounds = await Campground.find({});
+    res.render("campgrounds/index", { campgrounds });
+});
+
+//app.get("/campgrounds/new", (req, res) => {});
+
+app.get("/campgrounds/:id", async (req, res) => {
+    const { id } = req.params;
+    const campgroundDetails = await Campground.findById(id);
+    res.render("campgrounds/show", { campgroundDetails });
 });
 
 app.listen(3000, () => {
