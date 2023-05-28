@@ -1,0 +1,6 @@
+{
+    "prettier.arrowParens": "avoid",
+    "prettier.quoteProps": "consistent",
+    "prettier.tabWidth": 4,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
