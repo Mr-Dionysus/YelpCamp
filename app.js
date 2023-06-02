@@ -41,10 +41,9 @@ app.get("/campgrounds/new", (req, res) => {
 
 //Request to create new campground
 app.post("/campgrounds", async (req, res) => {
-    const newCampground = new Campground(req.body);
+    const newCampground = new Campground(req.body.campground);
     await newCampground.save();
-    console.log(req.body);
-    res.redirect("/campgrounds");
+    res.redirect(`/campgrounds/${newCampground._id}`);
 });
 
 //Page with details about campground
@@ -54,6 +53,20 @@ app.get("/campgrounds/:id", async (req, res) => {
     res.render("campgrounds/show", { campgroundDetails });
 });
 
+//Page with editing feature
+app.get("/campgrounds/:id/edit", async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    res.render("campgrounds/edit", { campground });
+});
+
+//Apply changes to campground
+app.put("/campgrounds/:id", async (req, res) => {
+    const campground = req.body.campground;
+    await Campground.findByIdAndUpdate(req.params.id, campground);
+    res.redirect(`${req.params.id}`);
+});
+
+//Test
 app.listen(3000, () => {
     console.log("Port 3000 is working");
 });

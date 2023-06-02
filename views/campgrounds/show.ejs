@@ -10,6 +10,14 @@
         <!-- Page to show info about campground -->
         <h1><%= campgroundDetails.title %></h1>
         <h2><%= campgroundDetails.location %></h2>
+        <p>$<%= campgroundDetails.price %></p>
+        <p><%= campgroundDetails.description %></p>
+        <b
+            ><a href="/campgrounds/<%= campgroundDetails.id %>/edit "
+                >Edit Campground</a
+            ></b
+        >
+        <br />
         <b><a href="/campgrounds">Back to All Campgrounds</a></b>
     </body>
 </html>
