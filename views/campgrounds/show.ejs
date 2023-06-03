@@ -3,8 +3,9 @@
 <!-- Page to show info about campground -->
 <h1><%= campgroundDetails.title %></h1>
 <h2><%= campgroundDetails.location %></h2>
-<p>$<%= campgroundDetails.price %></p>
+<img src=" <%= campgroundDetails.image %> " alt="" />
 <p><%= campgroundDetails.description %></p>
+<p>$<%= campgroundDetails.price %></p>
 <b
     ><a href="/campgrounds/<%= campgroundDetails.id %>/edit "
         >Edit Campground</a
