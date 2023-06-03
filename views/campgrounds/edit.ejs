@@ -1,64 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Edit Campground</title>
-    </head>
-    <body>
-        <h1>Edit Campground "<%= campground.title %>"</h1>
+<% layout('layouts/boilerplate.ejs') %>
 
-        <!-- Added inputs for editing campground -->
-        <form
-            action="/campgrounds/<%= campground.id %>?_method=PUT"
-            method="POST">
-            <div>
-                <label for="title" id="title">Title</label>
-                <input
-                    type="text"
-                    id="title"
-                    name="campground[title]"
-                    placeholder="Title"
-                    value="<%= campground.title %>" />
-            </div>
+<h1>Edit Campground "<%= campground.title %>"</h1>
 
-            <div>
-                <label for="price" id="price">Price</label>
-                <input
-                    type="number"
-                    id="price"
-                    name="campground[price]"
-                    placeholder="0"
-                    value="<%= campground.price %>" />
-            </div>
+<!-- Added inputs for editing campground -->
+<form action="/campgrounds/<%= campground.id %>?_method=PUT" method="POST">
+    <div>
+        <label for="title" id="title">Title</label>
+        <input
+            type="text"
+            id="title"
+            name="campground[title]"
+            placeholder="Title"
+            value="<%= campground.title %>" />
+    </div>
 
-            <div>
-                <label for="description" id="description">Description</label>
-                <input
-                    type="text"
-                    id="description"
-                    name="campground[description]"
-                    placeholder="Some description"
-                    value="<%= campground.description %>" />
-            </div>
+    <div>
+        <label for="price" id="price">Price</label>
+        <input
+            type="number"
+            id="price"
+            name="campground[price]"
+            placeholder="0"
+            value="<%= campground.price %>" />
+    </div>
 
-            <div>
-                <label for="location" id="location">Location</label>
-                <input
-                    type="text"
-                    id="location"
-                    name="campground[location]"
-                    placeholder="Location"
-                    value="<%= campground.location %>" />
-            </div>
+    <div>
+        <label for="description" id="description">Description</label>
+        <input
+            type="text"
+            id="description"
+            name="campground[description]"
+            placeholder="Some description"
+            value="<%= campground.description %>" />
+    </div>
 
-            <button>Apply Changes</button>
-        </form>
-        <b
-            ><a href="/campgrounds/<%= campground.id %>"
-                >Back to Campground</a
-            ></b
-        >
-    </body>
-</html>
+    <div>
+        <label for="location" id="location">Location</label>
+        <input
+            type="text"
+            id="location"
+            name="campground[location]"
+            placeholder="Location"
+            value="<%= campground.location %>" />
+    </div>
+
+    <button>Apply Changes</button>
+</form>
+<b><a href="/campgrounds/<%= campground.id %>">Back to Campground</a></b>
